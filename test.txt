@@ -63,3 +63,8 @@ Continuing on the path of CSS & HTML I will look at w3 lessons for these
 I think im going to look into express making database calls
 What exactly is express
 	is it just a used because of its url routing but you can run servers off it
+
+Ive made my express server send a jade template that links the the css and js scripts being sent
+  how to make my webpage populated by the data in the database
+    does my js file have to make a get request to the express server which in tern gets it from the database?
+    

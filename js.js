@@ -4,14 +4,14 @@ var path = require('path');
 
 
 var app = express();
+//the view engine is being set as jade for now
+app.set('view engine', 'jade')
 
 //sends the client all the files in the public folder
 app.use(express.static('public'))
 
 //at the home directory we serve the index.html file
-app.get('/', function(req, res){
-  res.sendFile(path.join(__dirname + '/index.html'));
-})
+
 
 //db login info
 var connection = mysql.createConnection({
@@ -20,7 +20,7 @@ var connection = mysql.createConnection({
   password: 'tipper',
   database: 'redditisfornerds'
 })
-
+var names,age,address;
 //connecting to db
 connection.connect(function(err) {
   if (err) throw err
@@ -35,12 +35,24 @@ connection.connect(function(err) {
       //getting data from the server
       connection.query('SELECT * FROM people', function(err, results) {
         if (err) throw err
-        console.log(results[1].id)
+        //res.render({ title: 'HoneyBunches of Oats is a Tier 1 cereal'})
+
         console.log(results[1].name)
         console.log(results[1].age)
         console.log(results[1].address)
+
+        names = results[1].name
+        ages = results[1].age
+        addressi = results[1].address
+
       })
     })
   // })
 })
+app.get('/', function(req, res){
+  //the index.jade file has to be in views folder
+  res.render('index', {names,ages,addressi})
+
+})
+
 app.listen(3000)
