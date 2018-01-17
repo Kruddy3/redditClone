@@ -1,0 +1,65 @@
+Users:
+  Id
+  Username
+  password
+  general account info (date created moderator of what subs)
+
+Subreddits:
+  id
+  name
+  moderators
+  amount of subscribers
+  nsfw or sfw
+
+Post data
+  id
+  title
+  the Post
+  upvotes
+  sub id
+
+comments
+  id
+  user posted
+  upvotes
+  reply or original comment?
+  post_id
+
+moderator
+  id
+  user id
+  sub id
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Look into Semantic markup
+  -writing things that let you know what is going to happen even without knowing the code.
+    element directives are a good example of this
+
+block element vs inline
+  -block elements always start a new line (like div) and take up as much space as possible
+  -inline elements stay on the same line (like span) take up only as much space as they need
+
+Basics of Flexbox
+  -helps distribute space more easily within items in a container
+  -you can chose the direction that items are placed in the flexbox and the value assigned dictates the order at which they are placed
+  -flexgrow dictates how much space an element within a flexbox can take up
+  -justify content allows you to control how much space each element is taking up
+
+
+Continuing on the path of CSS & HTML I will look at w3 lessons for these
+  -HTML
+    seems simple enough I dont know if there is something I should be delving into there
+  -CSS
+    lots of things to memorize here.
+      # id selector
+      . class selector
+        you can chain the selectors with the tag (ie p.class)
+    margins and things like this im aware of already just skimming it at this point
+
+    GOING TO MAKE AN EXAMPLE LAYOUT
+~~~example layout made~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+I think im going to look into express making database calls
+What exactly is express
+	is it just a used because of its url routing but you can run servers off it

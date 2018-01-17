@@ -1,0 +1,25 @@
+{
+  "name": "templates",
+  "version": "1.0.0",
+  "description": "practice express, vue, and mysql",
+  "main": "js.js",
+  "dependencies": {
+    "express": "^4.16.2",
+    "mysql": "^2.15.0",
+    "nodemon": "^1.14.11"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "nodemon js.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thestraded/redditClone.git"
+  },
+  "author": "kevin ruddy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thestraded/redditClone/issues"
+  },
+  "homepage": "https://github.com/thestraded/redditClone#readme"
+}
