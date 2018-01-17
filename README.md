@@ -1,5 +1,5 @@
 # redditClone
-<h1>A learning project to try and recreate the fundementals of reddit<h1>
+<h1>A learning project to try and recreate the fundamentals of reddit<h1>
 tasks
 <ul>
   <li>get express mysql working</li>
