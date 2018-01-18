@@ -1,8 +1,10 @@
 
-html, body{
-  border: 0;
-  margin: 0;
+body {
+  background-color: silver;
   height: 100%;
+  padding: 0;
+  white-space: nowrap;
+  margin: 0;
 }
 
 .left-side{
@@ -22,25 +24,32 @@ html, body{
   align-content: stretch;
   min-height: 100%;
   max-width: 300px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  overflow: hidden;
 }
 .right-side{
   float: right;
   width: 80%;
+  overflow: visible;
 }
 #post{
   overflow: hidden;
   display: flex;
-  height: 100px;
+  /*height: 100px;*/
   flex-wrap: wrap;
   align-content: stretch;
   background-color: tomato;
   margin:  5px 5px 5px 5px;
   text-align: center;
-
+  white-space: pre-wrap;
 }
 li{
   list-style-type: none;
   background-color: grey;
   margin:  5px 5px 5px 5px;
+  overflow: hidden;
 
 }

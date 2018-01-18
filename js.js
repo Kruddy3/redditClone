@@ -2,8 +2,13 @@ var mysql = require('mysql')
 var express = require('express')
 var path = require('path');
 
-
 var app = express();
+//express removed middleware so we add this
+var bodyParser = require('body-parser');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+
 //the view engine is being set as jade for now
 app.set('view engine', 'jade')
 
@@ -40,7 +45,7 @@ connection.connect(function(err) {
         console.log(results[1].name)
         console.log(results[1].age)
         console.log(results[1].address)
-
+        rez = results
         names = results[1].name
         ages = results[1].age
         addressi = results[1].address
