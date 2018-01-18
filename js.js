@@ -31,32 +31,19 @@ connection.connect(function(err) {
   if (err) throw err
   console.log('You are now connected...')
 
-  // connection.query('CREATE TABLE people(id int primary key AUTO_INCREMENT, name varchar(255), age int, address text)', function(err, result) {
-  // you only need to run this the first time as after that the table already exists
-    if (err) throw err
-    //insert into db
-    connection.query('INSERT INTO people (name, age, address) VALUES (?, ?, ?)', ['Larry', '41', 'California, USA'], function(err, result) {
-      if (err) throw err
-      //getting data from the server
-      connection.query('SELECT * FROM people', function(err, results) {
-        if (err) throw err
-        //res.render({ title: 'HoneyBunches of Oats is a Tier 1 cereal'})
-
-        console.log(results[1].name)
-        console.log(results[1].age)
-        console.log(results[1].address)
-        rez = results
-        names = results[1].name
-        ages = results[1].age
-        addressi = results[1].address
-
-      })
-    })
-  // })
 })
+
 app.get('/', function(req, res){
   //the index.jade file has to be in views folder
-  res.render('index', {names,ages,addressi})
+  connection.query('SELECT * FROM people', function(err, results) {
+    if (err) throw err
+    rez = results
+    names = results[1].name
+    ages = results[1].age
+    addressi = results[1].address
+
+  })
+  res.render('index', {names,ages,addressi, rez})
 
 })
 

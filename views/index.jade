@@ -13,12 +13,5 @@ html
     li haha
     li haha
   .right-side
-    #post
-      span= names
-      | &nbsp;
-      span= ages
-      | &nbsp;
-      span= addressi
-    #post Proin a arcu cursus, gravida enim varius, vulputate nulla.
-    #post Vestibulum dictum nulla at dui maximus, sit amet mattis est pharetra.
-    #post Proin lobortis ligula efficitur tortor malesuada bibendum.
+    each res in rez
+        #post= [res.name, res.age, res.address]
