@@ -173,8 +173,9 @@ Comments.belongsTo(Users,{as:'userPosted'})
 // Post.findAll().then(posts => {
 //   console.log(posts)
 // })
-Comments.findAll().then(comments => {
-  console.log(comments)
+Sequelize.sync
+Subs.findAll({ include: [{ all: true }] }).then(subreddits => {
+  console.log(JSON.stringify(subreddits,null,2))
 })
 // ~~~~~~~~~~~~~~~~
 
