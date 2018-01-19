@@ -19,21 +19,163 @@ const sequelize = new Sequelize('redditisfornerds', 'root', 'tipper', {
   }
 })
 
-//this is defining the post table
+//defining the tables
 var Post = sequelize.define('posts',{
-  id:{
-    type: Sequelize.INTEGER,
+  id: {
+    allowNull: false,
+    autoIncrement: true,
     primaryKey: true,
-    autoIncrement: true
+    type: Sequelize.INTEGER
   },
-  title: Sequelize.STRING,
-  body: Sequelize.TEXT,
+  title: {
+    type: Sequelize.STRING
+  },
+  body: {
+    type: Sequelize.STRING
+  },
   upvotes: {
-    type: Sequelize.INTEGER,
-    defaultValue: 0
+    type: Sequelize.INTEGER
   },
-  category:Sequelize.STRING
+  category: {
+    type: Sequelize.STRING
+  },
+  link: {
+    type: Sequelize.STRING
+  },
+  createdAt: {
+    allowNull: false,
+    type: Sequelize.DATE
+  },
+  updatedAt: {
+    allowNull: false,
+    type: Sequelize.DATE
+  }
 })
+
+var Subs = sequelize.define('subreddits',{
+  id: {
+    allowNull: false,
+    autoIncrement: true,
+    primaryKey: true,
+    type: Sequelize.INTEGER
+  },
+  name: {
+    type: Sequelize.STRING
+  },
+  subscribers: {
+    type: Sequelize.INTEGER
+  },
+  createdAt: {
+    allowNull: false,
+    type: Sequelize.DATE
+  },
+  updatedAt: {
+    allowNull: false,
+    type: Sequelize.DATE
+  }
+})
+var Users = sequelize.define('users',{
+  id: {
+    allowNull: false,
+    autoIncrement: true,
+    primaryKey: true,
+    type: Sequelize.INTEGER
+  },
+  username: {
+    type: Sequelize.STRING
+  },
+  password: {
+    type: Sequelize.STRING
+  },
+  createdAt: {
+    allowNull: false,
+    type: Sequelize.DATE
+  },
+  updatedAt: {
+    allowNull: false,
+    type: Sequelize.DATE
+  }
+})
+var Comments = sequelize.define('comments',{
+  id: {
+    allowNull: false,
+    autoIncrement: true,
+    primaryKey: true,
+    type: Sequelize.INTEGER
+  },
+  userPosted: {
+    type: Sequelize.INTEGER
+  },
+  body: {
+    type: Sequelize.STRING
+  },
+  upvotes: {
+    type: Sequelize.INTEGER
+  },
+  commentTree: {
+    type: Sequelize.INTEGER
+  },
+  postId: {
+    type: Sequelize.INTEGER
+  },
+  createdAt: {
+    allowNull: false,
+    type: Sequelize.DATE
+  },
+  updatedAt: {
+    allowNull: false,
+    type: Sequelize.DATE
+  }
+})
+//~~~~~~~~~~~~~~
+Comments.belongsTo(Post, {as:'post'})
+//~~~~~~~~~~~~~~
+var Moderators = sequelize.define('moderators',{
+  id: {
+    allowNull: false,
+    autoIncrement: true,
+    primaryKey: true,
+    type: Sequelize.INTEGER
+  },
+  userId: {
+    type: Sequelize.INTEGER
+  },
+  subredditId: {
+    type: Sequelize.INTEGER
+  },
+  createdAt: {
+    allowNull: false,
+    type: Sequelize.DATE
+  },
+  updatedAt: {
+    allowNull: false,
+    type: Sequelize.DATE
+  }
+})
+// ~~~~~~~~~~~~~~~~
+// moderator association
+Subs.hasMany(Moderators)
+Moderators.belongsTo(Subs)
+Users.hasMany(Moderators)
+Moderators.belongsTo(Users,{as:'user'})
+
+// Post.findAll().then(posts => {
+//   console.log(posts)
+// })
+Moderators.findAll().then(moderators => {
+  console.log(moderators)
+})
+// ~~~~~~~~~~~~~~~~
+
+
+
+
+
+
+
+
+
+
 
 //we're getting the Post table data
   //you can add {force:true} withing sync fucntion call to delete table if it exists

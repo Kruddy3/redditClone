@@ -11,7 +11,7 @@ module.exports = {
       userId: {
         type: Sequelize.INTEGER
       },
-      subId: {
+      subredditId: {
         type: Sequelize.INTEGER
       },
       createdAt: {
