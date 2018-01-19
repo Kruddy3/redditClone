@@ -103,7 +103,7 @@ var Comments = sequelize.define('comments',{
     primaryKey: true,
     type: Sequelize.INTEGER
   },
-  userPosted: {
+  userPostedId: {
     type: Sequelize.INTEGER
   },
   body: {
@@ -127,8 +127,7 @@ var Comments = sequelize.define('comments',{
     type: Sequelize.DATE
   }
 })
-//~~~~~~~~~~~~~~
-Comments.belongsTo(Post, {as:'post'})
+
 //~~~~~~~~~~~~~~
 var Moderators = sequelize.define('moderators',{
   id: {
@@ -159,11 +158,23 @@ Moderators.belongsTo(Subs)
 Users.hasMany(Moderators)
 Moderators.belongsTo(Users,{as:'user'})
 
+//~~~~~~~~~~~~~~~~~
+//posts
+// Post.belongsTo(Subs)
+// Subs.hasMany(Post)
+
+//~~~~~~~~~~~~~~~~~
+// comments
+Post.hasMany(Comments)
+Comments.belongsTo(Post, {as:'post'})
+Comments.belongsTo(Users,{as:'userPosted'})
+
+
 // Post.findAll().then(posts => {
 //   console.log(posts)
 // })
-Moderators.findAll().then(moderators => {
-  console.log(moderators)
+Comments.findAll().then(comments => {
+  console.log(comments)
 })
 // ~~~~~~~~~~~~~~~~
 
