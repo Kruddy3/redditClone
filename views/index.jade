@@ -13,5 +13,5 @@ html
     li haha
     li haha
   .right-side
-    each res in rez
-        #post= [res.name, res.age, res.address]
+    each post in posts
+        #post= [post.title, post.body, post.upvotes]
