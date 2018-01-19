@@ -37,16 +37,16 @@ var Post = sequelize.define('posts',{
 
 //we're getting the Post table data
   //you can add {force:true} withing sync fucntion call to delete table if it exists
-Post.sync().then(function() {
-  var data = {
-    title: 'Stale memes',
-    body: 'This is the body of the post and it should go on for a little bit to make some room that is needed to make the room to make the post to make the space to make the post to make the space.'
-  }
-  Post.create(data).then(function(post){
-    //we are creating an entry for the data then logging to console the results
-    console.dir(post.get())
-  })
-})
+// Post.sync().then(function() {
+//   var data = {
+//     title: 'Stale memes',
+//     body: 'This is the body of the post and it should go on for a little bit to make some room that is needed to make the room to make the post to make the space to make the post to make the space.'
+//   }
+//   Post.create(data).then(function(post){
+//     //we are creating an entry for the data then logging to console the results
+//     console.dir(post.get())
+//   })
+// })
 
 // ~~~~~~~~~~~~~~~~~~~~~~
 // we will be using body-parser as out middleware

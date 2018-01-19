@@ -1,7 +1,8 @@
 'use strict';
 
 module.exports = {
-  up: (queryInterface, Sequelize) => {[{
+  up: (queryInterface, Sequelize) => {
+    return queryInterface.bulkInsert('comments', [{
         userPosted: 1,
         upvotes: 7,
         commentTree: 0, //0 means original content any other number means a reply to the comment id stored in commentTree
@@ -28,7 +29,7 @@ module.exports = {
         createdAt: '2018-01-19 05:54:32',
         updatedAt: '2018-01-19 05:54:32'
       }
-      ]
+      ], {});
   },
 
   down: (queryInterface, Sequelize) => {

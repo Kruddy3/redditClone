@@ -11,9 +11,6 @@ module.exports = {
       name: {
         type: Sequelize.STRING
       },
-      moderators: {
-        type: Sequelize.STRING
-      },
       subscribers: {
         type: Sequelize.INTEGER
       },
