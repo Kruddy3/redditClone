@@ -13,5 +13,9 @@ html
     li haha
     li haha
   .right-side
-    each post in posts
-        #post= [post.title, post.body, post.upvotes]
+    each test in testing
+        #post= [test.title]
+        h3= test.body
+        h4= [test.upvotes]
+        each comment in test.comments
+          p= [comment.body, comment.upvotes]
