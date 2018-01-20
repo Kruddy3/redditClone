@@ -2,7 +2,7 @@
   "name": "templates",
   "version": "1.0.0",
   "description": "practice express, vue, and mysql",
-  "main": "js.js",
+  "main": "server.js",
   "dependencies": {
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
@@ -16,7 +16,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "nodemon js.js"
+    "start": "nodemon server.js"
   },
   "repository": {
     "type": "git",

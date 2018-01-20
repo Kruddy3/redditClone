@@ -7,20 +7,8 @@ var bodyParser = require('body-parser');
 
 var app = express();
 
-const Sequelize = require('sequelize');
 
-
-const sequelize = new Sequelize('redditisfornerds', 'root', 'tipper', {
-  host: 'localhost',
-  dialect: 'mysql',
-  pool: {
-    max:5,
-    min:0,
-    acquire:30000,
-    idle: 10000,
-  }
-})
-function tables(){
+module.exports = function tables(sequelize, Sequelize){
 
 
   var Post = sequelize.define('posts',{
@@ -172,21 +160,5 @@ function tables(){
   Comments.belongsTo(Post, {as:'post'})
   Comments.belongsTo(Users,{as:'userPosted'})
 
-
-  // Post.findAll().then(posts => {
-  //   console.log(posts)
-  // })
-  Sequelize.sync
-  var testing;
-
-  Post.findAll({ include: [{ all: true }] }).then(posts => {
-    testing = (posts);
-    console.log(JSON.stringify(testing, null, 2))
-    // res.send(JSON.stringify(testing, null, 2))
-    })
-  // ~~~~~~~~~~~~~~~~
-
-
+return [Post, Subs, Users,Moderators, Comments]
 }
-
-exports.tables = tables
