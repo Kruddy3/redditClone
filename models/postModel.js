@@ -1,34 +1,37 @@
-module.exports = function(sequelize, DataTypes) => {
-return sequelize.define('posts',{
+module.exports = (sequelize, DataTypes) => {
+var Post = sequelize.define('posts',{
     id: {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
-      type: Sequelize.INTEGER
+      type: DataTypes.INTEGER
     },
     title: {
-      type: Sequelize.STRING
+      type: DataTypes.STRING
     },
     body: {
-      type: Sequelize.STRING
+      type: DataTypes.STRING
     },
     upvotes: {
-      type: Sequelize.INTEGER
+      type: DataTypes.INTEGER
     },
     category: {
-      type: Sequelize.STRING
+      type: DataTypes.STRING
     },
     link: {
-      type: Sequelize.STRING
+      type: DataTypes.STRING
     },
     createdAt: {
       allowNull: false,
-      type: Sequelize.DATE
+      type: DataTypes.DATE
     },
     updatedAt: {
       allowNull: false,
-      type: Sequelize.DATE
+      type: DataTypes.DATE
     }
-  })
+  });
+  // Post.associate = function(models){
+  //   models.Post.hasMany(model.Comments)
+  // };
   return Post;
 }

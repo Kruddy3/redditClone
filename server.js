@@ -22,8 +22,10 @@ var Sequelize = require('sequelize');
     }
   })
 
-const Post = sequelize.import(__dirname + "/models/index.js")
-console.log('logging models ', Post)
+// const Post = sequelize.import(__dirname + "/models/index.js")
+var models  = require('./models');
+// include: [ models.Post ]
+console.log('logging models ', models)
 
 // // moderator association ~~~~~~~~~~~~
 // models.subreddit.hasMany(models.moderator)
