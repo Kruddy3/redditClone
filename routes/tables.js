@@ -4,13 +4,11 @@ var mysql = require('mysql')
 var express = require('express')
 var path = require('path');
 var bodyParser = require('body-parser');
-
-var app = express();
-
-
-module.exports = function tables(sequelize, Sequelize){
+const Sequelize = require('sequelize');
 
 
+
+module.exports = function tables(sequelize){
   var Post = sequelize.define('posts',{
     id: {
       allowNull: false,
@@ -42,123 +40,5 @@ module.exports = function tables(sequelize, Sequelize){
       type: Sequelize.DATE
     }
   })
-
-  var Subs = sequelize.define('subreddits',{
-    id: {
-      allowNull: false,
-      autoIncrement: true,
-      primaryKey: true,
-      type: Sequelize.INTEGER
-    },
-    name: {
-      type: Sequelize.STRING
-    },
-    subscribers: {
-      type: Sequelize.INTEGER
-    },
-    createdAt: {
-      allowNull: false,
-      type: Sequelize.DATE
-    },
-    updatedAt: {
-      allowNull: false,
-      type: Sequelize.DATE
-    }
-  })
-  var Users = sequelize.define('users',{
-    id: {
-      allowNull: false,
-      autoIncrement: true,
-      primaryKey: true,
-      type: Sequelize.INTEGER
-    },
-    username: {
-      type: Sequelize.STRING
-    },
-    password: {
-      type: Sequelize.STRING
-    },
-    createdAt: {
-      allowNull: false,
-      type: Sequelize.DATE
-    },
-    updatedAt: {
-      allowNull: false,
-      type: Sequelize.DATE
-    }
-  })
-  var Comments = sequelize.define('comments',{
-    id: {
-      allowNull: false,
-      autoIncrement: true,
-      primaryKey: true,
-      type: Sequelize.INTEGER
-    },
-    userPostedId: {
-      type: Sequelize.INTEGER
-    },
-    body: {
-      type: Sequelize.STRING
-    },
-    upvotes: {
-      type: Sequelize.INTEGER
-    },
-    commentTree: {
-      type: Sequelize.INTEGER
-    },
-    postId: {
-      type: Sequelize.INTEGER
-    },
-    createdAt: {
-      allowNull: false,
-      type: Sequelize.DATE
-    },
-    updatedAt: {
-      allowNull: false,
-      type: Sequelize.DATE
-    }
-  })
-
-  //~~~~~~~~~~~~~~
-  var Moderators = sequelize.define('moderators',{
-    id: {
-      allowNull: false,
-      autoIncrement: true,
-      primaryKey: true,
-      type: Sequelize.INTEGER
-    },
-    userId: {
-      type: Sequelize.INTEGER
-    },
-    subredditId: {
-      type: Sequelize.INTEGER
-    },
-    createdAt: {
-      allowNull: false,
-      type: Sequelize.DATE
-    },
-    updatedAt: {
-      allowNull: false,
-      type: Sequelize.DATE
-    }
-  })
-  // ~~~~~~~~~~~~~~~~
-  // moderator association
-  Subs.hasMany(Moderators)
-  Moderators.belongsTo(Subs)
-  Users.hasMany(Moderators)
-  Moderators.belongsTo(Users,{as:'user'})
-
-  //~~~~~~~~~~~~~~~~~
-  //posts
-  // Post.belongsTo(Subs)
-  // Subs.hasMany(Post)
-
-  //~~~~~~~~~~~~~~~~~
-  // comments
-  Post.hasMany(Comments)
-  Comments.belongsTo(Post, {as:'post'})
-  Comments.belongsTo(Users,{as:'userPosted'})
-
-return [Post, Subs, Users,Moderators, Comments]
+  return  Post;
 }

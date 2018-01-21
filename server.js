@@ -30,37 +30,43 @@ const sequelize = new Sequelize('redditisfornerds', 'root', 'tipper', {
 
 // routing.routingHolder();
 //defining the tables
-var Post = sequelize.define('posts',{
-  id: {
-    allowNull: false,
-    autoIncrement: true,
-    primaryKey: true,
-    type: Sequelize.INTEGER
-  },
-  title: {
-    type: Sequelize.STRING
-  },
-  body: {
-    type: Sequelize.STRING
-  },
-  upvotes: {
-    type: Sequelize.INTEGER
-  },
-  category: {
-    type: Sequelize.STRING
-  },
-  link: {
-    type: Sequelize.STRING
-  },
-  createdAt: {
-    allowNull: false,
-    type: Sequelize.DATE
-  },
-  updatedAt: {
-    allowNull: false,
-    type: Sequelize.DATE
-  }
-})
+
+var Post = require('./routes/tables.js')(sequelize);
+Post.findAll({ include: [{ all: true }] }).then(posts => {
+  console.log(posts)
+  })
+
+// var Post = sequelize.define('posts',{
+//   id: {
+//     allowNull: false,
+//     autoIncrement: true,
+//     primaryKey: true,
+//     type: Sequelize.INTEGER
+//   },
+//   title: {
+//     type: Sequelize.STRING
+//   },
+//   body: {
+//     type: Sequelize.STRING
+//   },
+//   upvotes: {
+//     type: Sequelize.INTEGER
+//   },
+//   category: {
+//     type: Sequelize.STRING
+//   },
+//   link: {
+//     type: Sequelize.STRING
+//   },
+//   createdAt: {
+//     allowNull: false,
+//     type: Sequelize.DATE
+//   },
+//   updatedAt: {
+//     allowNull: false,
+//     type: Sequelize.DATE
+//   }
+// })
 
 var Subs = sequelize.define('subreddits',{
   id: {
@@ -174,23 +180,17 @@ Comments.belongsTo(Users,{as:'userPosted'})
 
 
 
+
 //the view engine is being set as jade for now
 app.set('view engine', 'jade')
-
 //sends the client all the files in the public folder
 app.use(express.static('public'))
-
-
-//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-var database_tables = require('./routes/tables.js')
-database_tables(sequelize, Sequelize);
-//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-var path = require('path')
-
-var routes = require('./routes/index.js');
+var getReq = require('./routes/getReq.js');
+var postReq = require('./routes/postReq.js');
 //passing in app and Post
-routes(app,Post);
+getReq(app,Post);
+postReq(app,Post);
+
 
 
 app.listen(3000)
