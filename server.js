@@ -3,24 +3,27 @@ var express = require('express')
 var path = require('path');
 var bodyParser = require('body-parser');
 var app = express();
-const Sequelize = require('sequelize');
 app.use(bodyParser.json())
-
+var Sequelize = require('sequelize');
 //sequelize connection info
-const sequelize = new Sequelize('redditisfornerds', 'root', 'tipper', {
-  host: 'localhost',
-  dialect: 'mysql',
-  pool: {
-    max:5,
-    min:0,
-    acquire:30000,
-    idle: 10000,
-  }
-})
+
 
 // routing.routingHolder();
-var models = require('./routes/index.js')(sequelize);
-console.log('logging models ',models.subreddit)
+// var models = require('./routes/index.js')(sequelize);
+
+  const sequelize = new Sequelize('redditisfornerds', 'root', 'tipper', {
+    host: 'localhost',
+    dialect: 'mysql',
+    pool: {
+      max:5,
+      min:0,
+      acquire:30000,
+      idle: 10000,
+    }
+  })
+
+const Post = sequelize.import(__dirname + "/models/index.js")
+console.log('logging models ', Post)
 
 // // moderator association ~~~~~~~~~~~~
 // models.subreddit.hasMany(models.moderator)

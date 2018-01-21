@@ -1,14 +1,18 @@
 var collectorHolder;
 
-module.exports = function tables(sequelize){
+module.exports = function tables(){
+  const sequelize = new Sequelize('redditisfornerds', 'root', 'tipper', {
+    host: 'localhost',
+    dialect: 'mysql',
+    pool: {
+      max:5,
+      min:0,
+      acquire:30000,
+      idle: 10000,
+    }
+  })
 
-  collectorHolder = {
-    post: require("./models/postModel.js"),
-    comment: require("./models/commentModel.js"),
-    moderator: require("./models/moderatorModel.js"),
-    user: require("./models/userModel.js"),
-    subreddit: require("./models/subredditModel.js")
-  }
-
-  return collectorHolder;
+  return {
+    Post: require("./postModel.js")(sequelize)
+  };
 }
