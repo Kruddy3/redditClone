@@ -1,9 +1,3 @@
-
-var path = require('path')
-var mysql = require('mysql')
-var express = require('express')
-var path = require('path');
-var bodyParser = require('body-parser');
 const Sequelize = require('sequelize');
 
 
@@ -40,5 +34,5 @@ module.exports = function tables(sequelize){
       type: Sequelize.DATE
     }
   })
-  return  Post;
+  return Post;
 }
