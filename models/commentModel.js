@@ -1,42 +1,37 @@
-const Sequelize = require('sequelize');
-
-
-
-module.exports = function tables(sequelize){
-
+module.exports = (sequelize, DataTypes) => {
   var Comments = sequelize.define('comments',{
     id: {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
-      type: Sequelize.INTEGER
+      type: DataTypes.INTEGER
     },
     userPostedId: {
-      type: Sequelize.INTEGER
+      type: DataTypes.INTEGER
     },
     body: {
-      type: Sequelize.STRING
+      type: DataTypes.STRING
     },
     upvotes: {
-      type: Sequelize.INTEGER
+      type: DataTypes.INTEGER
     },
     commentTree: {
-      type: Sequelize.INTEGER
+      type: DataTypes.INTEGER
     },
     postId: {
-      type: Sequelize.INTEGER
+      type: DataTypes.INTEGER
     },
     createdAt: {
       allowNull: false,
-      type: Sequelize.DATE
+      type: DataTypes.DATE
     },
     updatedAt: {
       allowNull: false,
-      type: Sequelize.DATE
+      type: DataTypes.DATE
     }
   });
-  // Comments.associate = function(models){
-  //   models.Comments.belongsTo(models.Post, {as:'post'})
-  // };
+  Comments.associate = function(models) {
+    models.comments.belongsTo(models.posts);
+  };
   return Comments;
 }

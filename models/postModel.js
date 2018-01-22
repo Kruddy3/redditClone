@@ -30,8 +30,8 @@ var Post = sequelize.define('posts',{
       type: DataTypes.DATE
     }
   });
-  // Post.associate = function(models){
-  //   models.Post.hasMany(model.Comments)
-  // };
+  Post.associate = function(models) {
+    models.posts.hasMany(models.comments);
+  };
   return Post;
 }
